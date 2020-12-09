@@ -11,14 +11,16 @@
 This is the ArcGIS provider from the PHP Geocoder. This is a **READ ONLY** repository. See the
 [main repo](https://github.com/geocoder-php/Geocoder) for information and documentation.
 
-ArcGIS provides 2 APIs for geocoding addresses, `findAddressCandidates` and
-`geocodeAddresses`. On the API page for `findAddressCandidates` it states:
-> Applications are contractually prohibited from storing the results of
-geocoding transactions unless they make the request by passing the `forStorage`
-parameter with a value of `true` and the `token` parameter with a valid ArcGIS
-Online token.
+ArcGIS provides 2 APIs for geocoding addresses:
+* [`geocodeAddresses`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm)
+* [`findAddressCandidates`](https://developers.arcgis.com/rest/geocode/api-reference/geocoding-find-address-candidates.htm)
+    * This API states:
+    > Applications are contractually prohibited from storing the results of
+    geocoding transactions unless they make the request by passing the
+    `forStorage` parameter with a value of `true` and the `token` parameter with
+    a valid ArcGIS Online token.
 
-Since a token is required for the `geocodeAddresses` operation, the
+Since a token is required for the `geocodeAddresses` API, the
 `geocodeQuery` method checks the `token` property:
 * If `token` is `NULL`, it uses the `findAddressCandidates` API.
 * If `token` is not `NULL`, it uses the `geocodeAddresses` API.
